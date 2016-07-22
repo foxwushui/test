@@ -1,0 +1,40 @@
+
+
+<script>
+</script>
+
+<p>详细页面</p>
+		
+	<p>
+		作者： <a href="/u/{{post.name}}">{{post.name}}</a>
+		<br>
+		日期： {{post.time.day}}
+	</p>
+	
+	<p>阅读：{{post.pv}}次，评论：{{post.comments.length}}</p>
+	
+	{{#if user}}
+		{{#showUser user.name post.name}}		
+		<p>
+			<span><a href="/edit/{{post.name}}/{{post.time.day}}/{{post.title}} ">编辑</a></span>
+			<span><a href="/remove/{{post.name}}/{{post.time.day}}/{{post.title}}">删除</a></span>
+		</p>
+		{{/showUser}}
+	{{/if}}
+	
+	
+	
+	
+	
+	
+	
+	{{{post.post}}}
+	
+	
+	
+	
+	
+	
+
+
+{{> comment}}

@@ -1,0 +1,16 @@
+
+{{#each posts}}
+
+	<h2><a href="/u/{{name}}/{{time.day}}/{{title}}">{{title}}</a></h2>
+	
+	<p>
+			作者： <a href="/u/{{name}}">{{name}}</a>
+			<br>
+			日期： {{time.day}}
+		</p>
+		
+		
+	<p>阅读：{{pv}}次，评论：{{comments.length}}</p>
+		{{{post}}}
+
+{{/each}}

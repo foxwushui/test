@@ -1,0 +1,16 @@
+<form method="post">
+	<br/><br/>
+	<label for="">标题：</label><input type="text" name="title" id="" value="{{post.title}}" readonly/>
+		<br/><br/>
+		
+		
+	{{#each post.tags}}
+		<input type="text" name="title" id="" value="{{this}}" readonly/>
+	{{/each}}
+	<br />
+	<textarea name="post" rows="20" cols="100">{{post.post}}</textarea>
+		<br>
+		
+		
+	<input type="submit" value="保存修改"/>
+</form>
