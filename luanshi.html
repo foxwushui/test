@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <title>乱世服</title>
+</head>
+
+<body>
+
+    <el-container id="app">
+        <el-header>乱世服赞助列表</el-header>
+        <el-main>
+
+            <el-table :data="tableData" style="width: 100%" border show-summary>
+                <el-table-column prop="date" label="日期" width="200px">
+                </el-table-column>
+                <el-table-column prop="name" label="项目">
+                </el-table-column>
+                <el-table-column prop="bay" label="支出">
+                </el-table-column>
+                <el-table-column prop="bayUser" label="付款人">
+                </el-table-column>
+                <el-table-column prop="sellUser" label="收款人">
+                </el-table-column>
+            </el-table>
+
+            <br />
+
+            <el-table :data="UserData" style="width: 100%" border>
+                <el-table-column prop="name" label=" " width="200px">
+                </el-table-column>
+                <el-table-column prop="bay" label="支出">
+                </el-table-column>
+                <el-table-column prop="sell" label="收入">
+                </el-table-column>
+                <el-table-column prop="money" label="应付款">
+                </el-table-column>
+            </el-table>
+
+        </el-main>
+
+
+
+    </el-container>
+
+</body>
+<script>
+    var Main = {
+        data() {
+            return {
+                totol: 0,
+                UserData: [{
+                    name: '陈志',
+                    bay: 0,
+                    sell: 0,
+                    money: 0
+                }, {
+                    name: '涂军',
+                    bay: 0,
+                    sell: 0,
+                    money: 0
+                }, {
+                    name: 'sky',
+                    bay: 0,
+                    sell: 0,
+                    money: 0
+                }, {
+                    name: '威',
+                    bay: 0,
+                    sell: 0,
+                    money: 0
+                }],
+                tableData: [{
+                    date: '2018-12-09',
+                    name: '起号-1灵宝-1至尊-2主宰',
+                    bay: 4365,
+                    bayUser: '陈志',
+                    sellUser: '客服'
+                }, {
+                    date: '2018-12-11',
+                    name: '收材料',
+                    bay: 75,
+                    bayUser: 'sky',
+                    sellUser: '玩家'
+                }, {
+                    date: '2018-12-11',
+                    name: '收材料',
+                    bay: 144,
+                    bayUser: '涂军',
+                    sellUser: '玩家'
+                }, {
+                    date: '2018-12-11',
+                    name: '晚上代练，收材料',
+                    bay: 60,
+                    bayUser: '涂军',
+                    sellUser: '代练'
+                }, {
+                    date: '2018-12-12',
+                    name: '买挂，充狂暴',
+                    bay: 120,
+                    bayUser: '陈志',
+                    sellUser: '挂'
+                }, {
+                    date: '2018-12-12',
+                    name: '买材料，充狂暴',
+                    bay: 100,
+                    bayUser: '威',
+                    sellUser: '玩家，客服'
+                }]
+            }
+        },
+        methods: {
+            getMoney() {
+                //求和
+                this.tableData.forEach((e, i) => {
+                    this.totol += e.bay
+                })
+                //个人支出
+                this.tableData.forEach((e, i) => {
+                    this.UserData.forEach((ele, index) => {
+                        if (e.bayUser == ele.name) {
+                            ele.bay += e.bay
+                        }
+                    })
+                })
+                //个人应付                
+                this.UserData.forEach((ele, index) => {
+                   ele.money += this.totol / this.UserData.length - ele.bay + ele.sell
+                })
+            }
+        },
+        created() {
+            this.getMoney();
+        }
+    }
+    var Ctor = Vue.extend(Main)
+    new Ctor().$mount('#app')
+
+</script>
+<style>
+    @import url("https://unpkg.com/element-ui/lib/theme-chalk/index.css");
+
+    .el-header {
+        text-align: center;
+        color: #fff;
+        background: #409EFF;
+        margin: 0;
+        line-height: 60px;
+    }
+</style>
+
+</html>
