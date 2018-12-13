@@ -17,7 +17,7 @@
         <el-main>
 
             <el-table :data="tableData" style="width: 100%" border show-summary>
-                <el-table-column prop="date" label="日期" width="200px">
+                <el-table-column prop="date" label="日期">
                 </el-table-column>
                 <el-table-column prop="name" label="项目">
                 </el-table-column>
@@ -32,7 +32,7 @@
             <br />
 
             <el-table :data="UserData" style="width: 100%" border>
-                <el-table-column prop="name" label=" " width="200px">
+                <el-table-column prop="name" label=" " >
                 </el-table-column>
                 <el-table-column prop="bay" label="支出">
                 </el-table-column>
@@ -111,6 +111,12 @@
                     bay: 100,
                     bayUser: '威',
                     sellUser: '玩家，客服'
+                }, {
+                    date: '2018-12-13',
+                    name: '买材料',
+                    bay: 60,
+                    bayUser: '陈志',
+                    sellUser: '玩家（小战士）'
                 }]
             }
         },
