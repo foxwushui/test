@@ -54,6 +54,7 @@
         data() {
             return {
                 totol: 0,
+	            atotol: 0,
                 UserData: [{
                     name: '陈志',
                     bay: 0,
@@ -160,7 +161,12 @@
             getMoney() {
                 //求和
                 this.tableData.forEach((e, i) => {
-                    this.totol += e.bay
+		            var time = new Date(e.date).getTime()
+		            if(time<=1544572800000){
+ 	                    this.totol += e.bay
+	                }else{
+ 	                    this.atotol += e.bay
+	                }
                 })
                 //个人支出
                 this.tableData.forEach((e, i) => {
@@ -173,6 +179,10 @@
                 //个人应付                
                 this.UserData.forEach((ele, index) => {
                    ele.money += this.totol / this.UserData.length - ele.bay + ele.sell
+	            if(index<3){
+                   ele.money += this.atotol / (this.UserData.length-1)
+	            }
+ 	            ele.money = ele.money.toFixed(2)
                 })
             }
         },
